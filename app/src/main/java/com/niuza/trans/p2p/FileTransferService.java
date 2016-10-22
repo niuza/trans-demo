@@ -8,12 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+
 import com.niuza.trans.MainActivity;
 import com.niuza.trans.ui.DeviceDetailFragment;
+import com.niuza.trans.utils.UriToPath;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -77,20 +81,53 @@ public class FileTransferService extends IntentService {
                 //获取输出流
                 OutputStream stream = socket.getOutputStream();
 
+
+                DataOutputStream dos  =   new  DataOutputStream(stream);
+
+
                 //获取当前应用的ContentResolver
                 ContentResolver cr = context.getContentResolver();
 
 
                 //创建输入流
-                InputStream is = null;
+                DataInputStream fis = null;
                 try {
                     //TODO wifi直连底层,通过Socket传输数据
                     //通过当前应用的ContentResolover进行数据读取
-                    is = cr.openInputStream(Uri.parse(fileUri));
+
+
+                    Uri uri=Uri.parse(fileUri);
+
+                    File file=new File(fileUri);
+
+
+
+                  String filename=UriToPath.getRealFilePath(getApplicationContext(),uri);
+
+
+                    fis = new DataInputStream(cr.openInputStream(uri));
+
+                    String docname = filename.substring(fileUri.lastIndexOf("/") + 1, filename.length());
+                    dos.writeUTF(docname);
+
+                    dos.flush();
+
+                    dos.writeLong(file.length());
+                    dos.flush();
+                    DeviceDetailFragment.copyFile(fis, dos);
+
+
+
+
+
+
+
                 } catch (FileNotFoundException e) {
                     Log.d(MainActivity.TAG, e.toString());
                 }
-                DeviceDetailFragment.copyFile(is, stream);
+
+
+
                 Log.d(MainActivity.TAG, "Client: Data written");
             } catch (IOException e) {
                 Log.e(MainActivity.TAG, e.getMessage());

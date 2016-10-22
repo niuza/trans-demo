@@ -96,7 +96,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
-        progressDialog = ProgressDialog.show(getActivity(), "Press back to cancel", "finding peers", true,
+        progressDialog = ProgressDialog.show(getActivity(), "按返回键取消扫描", "正在扫描设备", true,
                 true, new DialogInterface.OnCancelListener() {
 
                     @Override
@@ -198,17 +198,17 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
         Log.d(MainActivity.TAG, "Peer status :" + deviceStatus);
         switch (deviceStatus) {
             case WifiP2pDevice.AVAILABLE:
-                return "Available";
+                return "可连接";
             case WifiP2pDevice.INVITED:
-                return "Invited";
+                return "已准备连接";
             case WifiP2pDevice.CONNECTED:
-                return "Connected";
+                return "已连接";
             case WifiP2pDevice.FAILED:
-                return "Failed";
+                return "连接失败";
             case WifiP2pDevice.UNAVAILABLE:
-                return "Unavailable";
+                return "不可连接";
             default:
-                return "Unknown";
+                return "未知错误";
 
         }
     }

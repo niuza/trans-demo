@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:text="我的设备" />
+        android:text="@string/label_me" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -55,7 +55,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:text="PEERS" />
+        android:text="@string/label_peers" />
 
     <View
         android:layout_width="fill_parent"
@@ -76,5 +76,5 @@
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="match_parent"
-        android:text="No devices found. Turn on P2P and perform discovery from the Action Bar" />
+        android:text="@string/empty_message" />
 </LinearLayout>

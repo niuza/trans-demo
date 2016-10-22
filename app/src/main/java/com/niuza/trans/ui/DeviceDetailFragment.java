@@ -27,6 +27,7 @@ import com.niuza.trans.MainActivity;
 import com.niuza.trans.R;
 import com.niuza.trans.p2p.FileTransferService;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -35,7 +36,9 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
-
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -65,8 +68,8 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
-                progressDialog = ProgressDialog.show(getActivity(), "Press back to cancel",
-                        "Connecting to :" + device.deviceAddress, true, true
+                progressDialog = ProgressDialog.show(getActivity(), "按返回键取消",
+                        "连接到 :" + device.deviceAddress, true, true
 //                        new DialogInterface.OnCancelListener() {
 //
 //                            @Override
@@ -103,7 +106,8 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                         // Allow user to pick an image from Gallery or other
                         // registered apps
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.setType("image/*");
+                        intent.setType("*/*");
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
                         startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
                     }
                 });
@@ -198,20 +202,39 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 SocketAddress remoteSocketAddress = client.getRemoteSocketAddress();
 
 
-                Log.d(MainActivity.TAG, "接入的客户端的IP是:"+remoteSocketAddress.toString());
+                Log.d(MainActivity.TAG, "接入的客户端的IP是:" + remoteSocketAddress.toString());
+
+
+
+                InputStream inputstream = client.getInputStream();
+                DataInputStream dis=new DataInputStream(inputstream);
+
+
+                String receivename="";
+                try
+                {
+
+                    receivename=dis.readUTF();
+                    receivename= URLEncoder.encode(receivename, "GBK");
+                    dis.readLong();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat formatter = new SimpleDateFormat ("yyyyMMdd");
+                Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+                String dateStr = formatter.format(curDate);
+
                 final File f = new File(Environment.getExternalStorageDirectory() + "/"
-                        + context.getPackageName() + "/wifip2pshared-" + System.currentTimeMillis()
-                        + ".jpg");
+                        + context.getPackageName() + "/"+dateStr+"_"+receivename);
+
 
                 File dirs = new File(f.getParent());
                 if (!dirs.exists())
                     dirs.mkdirs();
                 f.createNewFile();
-
-                Log.d(MainActivity.TAG, "server: copying files " + f.toString());
-                InputStream inputstream = client.getInputStream();
-
-                copyFile(inputstream, new FileOutputStream(f));
+                copyFile(dis, new FileOutputStream(f));
                 serverSocket.close();
                 return f.getAbsolutePath();
             } catch (IOException e) {
@@ -227,12 +250,20 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-
-                statusText.setText("File copied - " + result);
-                Intent intent = new Intent();
-                intent.setAction(android.content.Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
-                context.startActivity(intent);
+                try {
+                    statusText.setText("File copied - " + result);
+                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_GET_CONTENT);
+//                    intent.setDataAndType(Uri.parse("file://" + result), "/*");
+                    intent.setAction(android.content.Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/"
+                            + context.getPackageName()), "*/*");
+                    context.startActivity(intent);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -243,7 +274,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
          */
         @Override
         protected void onPreExecute() {
-            statusText.setText("Opening a server socket");
+            statusText.setText("正在准备接收");
         }
 
     }
@@ -342,5 +373,6 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
 
     }
+
 
 }

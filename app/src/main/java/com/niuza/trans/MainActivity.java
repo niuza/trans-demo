@@ -1,9 +1,7 @@
 package com.niuza.trans;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pConfig;
@@ -12,9 +10,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.niuza.trans.p2p.WiFiDirectBroadcastReceiver;
@@ -119,28 +115,21 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
 
     public void editname(View v)
     {
-        AlertDialog.Builder customDia=new AlertDialog.Builder(this);
-        final View viewDia= LayoutInflater.from(MainActivity.this).inflate(R.layout.edit_name_dialog, null);
-        customDia.setTitle("自定义对话框");
-        customDia.setView(viewDia);
-
-        final EditText editText=(EditText)findViewById(R.id.name_edit);
-        customDia.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
-
-                editdevname("丢类");
-            }
-        });
-        customDia.create().show();
-
-
-
-
-
+            DevNameDialog dialog = new DevNameDialog( MainActivity.this,
+                new DevNameDialog.DataBackListener() {
+                    @Override
+                    public void getData(String data) {
+                        String result = data;
+                        editdevname(result);
+                    }
+                });
+        dialog.show();
     }
+
+
+
+
+
 
 
 
