@@ -101,8 +101,7 @@ public class FileTransferService extends IntentService {
                     File file=new File(fileUri);
 
 
-
-                  String filename=UriToPath.getRealFilePath(getApplicationContext(),uri);
+                    String filename=UriToPath.getRealFilePath(getApplicationContext(),uri);
 
 
                     fis = new DataInputStream(cr.openInputStream(uri));
@@ -115,11 +114,6 @@ public class FileTransferService extends IntentService {
                     dos.writeLong(file.length());
                     dos.flush();
                     DeviceDetailFragment.copyFile(fis, dos);
-
-
-
-
-
 
 
                 } catch (FileNotFoundException e) {
