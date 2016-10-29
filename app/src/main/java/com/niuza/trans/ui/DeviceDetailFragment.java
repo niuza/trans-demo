@@ -204,6 +204,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
                 Log.d(MainActivity.TAG, "接入的客户端的IP是:" + remoteSocketAddress.toString());
 
+                
 
 
                 InputStream inputstream = client.getInputStream();
