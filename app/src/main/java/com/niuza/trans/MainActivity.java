@@ -1,7 +1,8 @@
 package com.niuza.trans;
-
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pConfig;
@@ -10,6 +11,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -163,6 +165,30 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
         unregisterReceiver(receiver);
     }
 
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle("退出程序");
+            alertDialog.setMessage("不多玩玩了吗？");
+            alertDialog.setPositiveButton("再玩玩",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+// TODO Auto-generated method stub
+                }
+            });
+            alertDialog.setNegativeButton("稍后再来", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+// TODO Auto-generated method stub
+                    finish();
+                }
+            });
+            alertDialog.show();
+        }
+        return false;
+    }
+
     /**
      * 当状态变化的时候重置所有数据
      */
@@ -296,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
 
             @Override
             public void onFailure(int reason) {
-                Toast.makeText(getApplicationContext(),R.string.connect_fail,
+                Toast.makeText(getApplicationContext(), R.string.connect_fail,
                         Toast.LENGTH_SHORT).show();
             }
         });

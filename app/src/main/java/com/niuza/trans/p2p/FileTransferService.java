@@ -100,8 +100,13 @@ public class FileTransferService extends IntentService {
 
                     File file=new File(fileUri);
 
+                    String filename="";
 
-                    String filename=UriToPath.getRealFilePath(getApplicationContext(),uri);
+                    if(UriToPath.isMediaDocument(uri))
+                       filename=UriToPath.getImageAbsolutePath(getApplicationContext(),uri);
+                    else if (UriToPath.isDownloadsDocument(uri) || UriToPath.isExternalStorageDocument(uri))
+                        filename=UriToPath.getRealFilePath(getApplicationContext(),uri);
+                    else filename=fileUri;
 
 
                     fis = new DataInputStream(cr.openInputStream(uri));
