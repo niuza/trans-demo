@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+import com.special.ResideMenu.*;
 
 import com.niuza.trans.p2p.WiFiDirectBroadcastReceiver;
 import com.niuza.trans.ui.DeviceDetailFragment;
@@ -32,6 +34,11 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
     private final IntentFilter intentFilter = new IntentFilter();
     private WifiP2pManager.Channel channel;
     private BroadcastReceiver receiver = null;//创建receiver和intentFilter
+    private ResideMenu resideMenu;
+
+
+
+
     public void setIsWifiP2pEnabled(boolean isWifiP2pEnabled) {
         this.isWifiP2pEnabled = isWifiP2pEnabled;
     }
@@ -64,7 +71,20 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
             });
         }catch (Exception e)
         {}
+        // attach to current activity;
+        resideMenu = new ResideMenu(this);
+        resideMenu.setBackground(R.drawable.background1);
+        resideMenu.attachToActivity(this);
 
+        // create menu items;
+        String titles[] = { "Home", "Profile", "Calendar", "Settings" };
+        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
+
+        for (int i = 0; i < titles.length; i++){
+            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
+           // item.setOnClickListener();
+            resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
+        }
 
 
     }
@@ -106,14 +126,10 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
     }
 
 
-
-
-
-
-
-
-
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return resideMenu.dispatchTouchEvent(ev);
+    }
 
     public void editname(View v)
     {

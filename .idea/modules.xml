@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ResideMenu/ResideMenu.iml" filepath="$PROJECT_DIR$/ResideMenu/ResideMenu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drawerlibrary/drawerlibrary.iml" filepath="$PROJECT_DIR$/drawerlibrary/drawerlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trans-demo.iml" filepath="$PROJECT_DIR$/trans-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/trans-master.iml" filepath="$PROJECT_DIR$/trans-master.iml" />
     </modules>
   </component>
