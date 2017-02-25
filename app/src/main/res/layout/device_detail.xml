@@ -20,7 +20,7 @@
                 android:id="@+id/btn_connect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="向该设备请求发送" />
+                android:text="我要接收" />
             <Button
                 android:id="@+id/btn_disconnect"
                 android:layout_width="wrap_content"
@@ -41,21 +41,25 @@
         <!--扫描到设备后的设备信息-->
         <TextView
             android:id="@+id/device_address"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#0000FF"/>
         <TextView
             android:id="@+id/device_info"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#0000FF"/>
         <TextView
             android:id="@+id/group_owner"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#0000FF"/>
         <TextView
             android:id="@+id/group_ip"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -71,6 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:textColor="@android:color/white"

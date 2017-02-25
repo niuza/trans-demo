@@ -65,8 +65,9 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 WifiP2pConfig config = new WifiP2pConfig();
                 config.deviceAddress = device.deviceAddress;
                 config.wps.setup = WpsInfo.PBC;
+
                 if (progressDialog != null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
+                        progressDialog.dismiss();
                 }
                 progressDialog = ProgressDialog.show(getActivity(), "按返回键取消",
                         "连接到 :" + device.deviceAddress, true, true
@@ -287,7 +288,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         this.device = device;
         this.getView().setVisibility(View.VISIBLE);
         TextView view = (TextView) mContentView.findViewById(R.id.device_address);
-        view.setText(device.deviceAddress);
+        view.setText("地址："+device.deviceAddress);
         view = (TextView) mContentView.findViewById(R.id.device_info);
         view.setText(device.toString());
 

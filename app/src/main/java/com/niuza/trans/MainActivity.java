@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
         resideMenu.attachToActivity(this);
 
         // create menu items;
-        String titles[] = { "Home", "Profile", "Calendar", "Settings" };
+        String titles[] = { "主页", "用户", "历史", "设置" };
         int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
 
         for (int i = 0; i < titles.length; i++){
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
            // item.setOnClickListener();
             resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
         }
+        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
 
     }
@@ -186,17 +187,18 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
         if(keyCode==KeyEvent.KEYCODE_BACK){
             AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this);
             alertDialog.setTitle("退出程序");
-            alertDialog.setMessage("不多玩玩了吗？");
-            alertDialog.setPositiveButton("再玩玩",new DialogInterface.OnClickListener() {
+            alertDialog.setMessage("确认断开当前连接并退出？");
+            alertDialog.setPositiveButton("取消",new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
 // TODO Auto-generated method stub
                 }
             });
-            alertDialog.setNegativeButton("稍后再来", new DialogInterface.OnClickListener() {
+            alertDialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface arg0, int arg1) {
 // TODO Auto-generated method stub
+                    disconnect();
                     finish();
                 }
             });

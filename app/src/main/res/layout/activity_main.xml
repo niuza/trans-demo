@@ -7,44 +7,85 @@
               tools:context=".MainActivity">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startWifi"
-        android:text="打开wifi"
-        android:textSize="24sp"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startScan"
-        android:text="启动扫描"
-        android:textSize="24sp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="editname"
-        android:text="修改名字"
-        android:textSize="24sp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/linearLayout1"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
+
         <fragment
             class="com.niuza.trans.ui.DeviceListFragment"
             android:id="@+id/frag_list"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/phone_list_height">
+            android:layout_height="wrap_content"
+            tools:layout="@layout/device_list">
             <!-- Preview: layout=@layout/row_devices -->
         </fragment>
+
         <fragment
             class="com.niuza.trans.ui.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout="@layout/device_detail">
             <!-- Preview: layout=@layout/device_detail -->
         </fragment>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+
+             </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="startWifi"
+                    android:layout_marginBottom="2dp"
+                    android:text="打开wifi"
+                    android:background="@drawable/shape"
+                    android:textColor="@color/selectBtn"
+                    android:textSize="18sp" />
+
+                <Button
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:onClick="startScan"
+                    android:text="启动扫描"
+                    android:background="@drawable/shape"
+                    android:textColor="@color/selectBtn"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 </LinearLayout>
