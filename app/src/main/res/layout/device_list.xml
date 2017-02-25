@@ -91,7 +91,7 @@
                 android:layout_height="1px"
                 android:layout_marginTop="8dp"
                 android:contentDescription="@null"
-                android:background="#DFDFDF" />
+                android:background="#DFDFDF"  />
 
             <ImageView
                 android:layout_width="wrap_content"
