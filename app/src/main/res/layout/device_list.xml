@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
 >
     <!-- Self information -->
     <RelativeLayout
@@ -23,9 +24,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_btn"
+                android:background="@drawable/shape"
                 android:textSize="13sp"
-                android:textColor="#57AF4E"
+                android:textColor="#B1B1B1"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="18dp"
                 android:layout_marginTop="2dp"
@@ -57,10 +58,11 @@
             android:layout_width="68dp"
             android:layout_height="68dp"
             android:padding="1px"
-            android:background="@android:color/white"
+            android:background="@drawable/circle_view"
+            android:scaleType="centerInside"
             android:layout_marginLeft="21dp"
             android:contentDescription="@null"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/user_avatar" />
 
         <TextView
             android:id="@+id/my_name"
@@ -70,12 +72,13 @@
             android:layout_marginLeft="13dp"
             android:ellipsize="end"
             android:shadowColor="@android:color/black"
+            android:textColor="#FFFFFF"
             android:shadowDx="3.0"
             android:shadowDy="3.0"
             android:shadowRadius="5.0"
             android:text="user_name"
             android:textSize="20sp"
-            android:textColor="@android:color/white" />
+             />
 
         <FrameLayout
             android:id="@+id/user_divider_layout"
@@ -117,27 +120,38 @@
 
     </RelativeLayout>
 
-
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:text="@string/label_peers" />
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:gravity="center_vertical"
-        android:background="@android:color/holo_blue_light" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="#B1B1B1"
+            android:text="@string/label_peers" />
 
-    <!-- Available peers -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:gravity="center_vertical"
+            android:background="#FFFFFF" />
+
+        <!-- Available peers -->
 
 
-    <ListView
-        android:id="@id/android:list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:drawSelectorOnTop="false" />
+        <ListView
+            android:id="@id/android:list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawSelectorOnTop="false" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

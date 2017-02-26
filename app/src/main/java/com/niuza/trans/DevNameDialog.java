@@ -23,6 +23,7 @@ public class DevNameDialog extends Dialog {
         //用传递过来的监听器来初始化
         this.listener = listener;
         setContentView(R.layout.edit_name_dialog);
+        setTitle("修改设备名");
         editText = (EditText)findViewById(R.id.name_edit);
         btnSure = (Button)findViewById(R.id.sure);
         btnCancel=(Button)findViewById(R.id.cancel_edit);
