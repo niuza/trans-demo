@@ -3,54 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/details_view"
+    android:layout_height="wrap_content"
     android:visibility="gone">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/btn_connect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我要接收" />
-            <Button
-                android:id="@+id/btn_disconnect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="断开连接" />
-            <Button
-                android:id="@+id/btn_start_client"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="发送文件"
-                android:visibility="gone" />
-
-
-
-        </LinearLayout>
-
-
+        android:layout_height="match_parent"
+        android:background="@drawable/background1">
         <!--扫描到设备后的设备信息-->
         <TextView
             android:id="@+id/device_address"
-
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#0000FF"/>
+            android:textColor="#B1B1B1"/>
         <TextView
             android:id="@+id/device_info"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#0000FF"/>
+        <TextView
+            android:id="@+id/device_detailname"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#B1B1B1"/>
         <TextView
             android:id="@+id/group_owner"
             android:visibility="gone"
@@ -69,9 +50,33 @@
         android:id="@+id/status_bar"
         android:orientation="vertical"
         android:layout_gravity="bottom"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
-        android:background="@android:color/background_dark">
+>
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:textColor="#B1B1B1"
+            android:text="我要接收" />
+        <Button
+            android:id="@+id/btn_start_client"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:textColor="#B1B1B1"
+            android:text="发送文件"
+            android:visibility="gone" />
+        <Button
+            android:id="@+id/btn_disconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:textColor="#B1B1B1"
+            android:text="断开连接" />
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

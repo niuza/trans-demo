@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/drawerlibrary/drawerlibrary.iml" filepath="$PROJECT_DIR$/drawerlibrary/drawerlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/trans-demo.iml" filepath="$PROJECT_DIR$/trans-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/trans-master.iml" filepath="$PROJECT_DIR$/trans-master.iml" />
     </modules>
   </component>
 </project>

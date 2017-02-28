@@ -28,6 +28,7 @@
             class="com.niuza.trans.ui.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
+            android:layout_gravity="bottom"
             android:layout_height="match_parent"
             tools:layout="@layout/device_detail">
             <!-- Preview: layout=@layout/device_detail -->

@@ -4,8 +4,10 @@ package com.niuza.trans.ui;
  * Created by 牛杂辉 on 2016/7/21.
  */
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WpsInfo;
@@ -65,7 +67,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 WifiP2pConfig config = new WifiP2pConfig();
                 config.deviceAddress = device.deviceAddress;
                 config.wps.setup = WpsInfo.PBC;
-
+                config.groupOwnerIntent = 15;
                 if (progressDialog != null && progressDialog.isShowing()) {
                         progressDialog.dismiss();
                 }
@@ -259,7 +261,27 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                     intent.setAction(android.content.Intent.ACTION_VIEW);
                     intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/"
                             + context.getPackageName()), "*/*");
-                    context.startActivity(intent);
+
+                    final Intent file_intent=intent;
+                    AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
+                    alertDialog.setTitle("传输完成");
+                    alertDialog.setMessage("确认打开文件？");
+                    alertDialog.setPositiveButton("取消",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+                    alertDialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            context.startActivity(file_intent);
+                        }
+                    });
+                    alertDialog.show();
+
+
+
+
                 }
                 catch (Exception e)
                 {
@@ -288,10 +310,11 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         this.device = device;
         this.getView().setVisibility(View.VISIBLE);
         TextView view = (TextView) mContentView.findViewById(R.id.device_address);
-        view.setText("地址："+device.deviceAddress);
+        view.setText("设备MAC地址："+device.deviceAddress);
         view = (TextView) mContentView.findViewById(R.id.device_info);
         view.setText(device.toString());
-
+        view = (TextView) mContentView.findViewById(R.id.device_detailname);
+        view.setText("设备名称："+device.deviceName);
     }
 
 

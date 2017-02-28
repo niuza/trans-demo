@@ -176,10 +176,13 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
         //接收WiFiDirect广播
     }
 
+
+
     @Override
     public void onPause() {
         super.onPause();
         unregisterReceiver(receiver);
+        cancelDisconnect();
     }
 
 
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
                 .findFragmentById(R.id.frag_list);
         DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frag_detail);
+
         if (fragmentList != null) {
             fragmentList.clearPeers();
         }
