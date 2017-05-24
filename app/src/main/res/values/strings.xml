@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KuaiChuanDemo</string>
+    <string name="app_name">Transwhere</string>
 
 
     <!--官方demo定义的String 资源-->
@@ -23,7 +23,7 @@
     <string name="abort_success">连接已断开</string>
     <string name="abort_fail">断开错误</string>
     <string name="client_text">按发送开始传输</string>
-    <string name="empty_message">请打开WIFI并启动扫描</string>
+    <string name="empty_message">请打开WIFI并启动扫描，向左滑动获取更多</string>
     <string name="p2p_off_warning">请打开P2P设置</string>
     <string name="group_owner_text">是否为接收方？</string>
     <string name="label_me">本机</string>
@@ -35,4 +35,6 @@
     <string name="stat_fail">连接失败</string>
     <string name="stat_unava">不可连接</string>
     <string name="stat_unknown">未知错误</string>
+    <string name="title_activity_pctrans">pctrans</string>
+    <string name="title_activity_trans_record_view">TransRecordView</string>
 </resources>

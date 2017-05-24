@@ -6,4 +6,5 @@
     <!--该Demo需要定义的数值-->
     <dimen name="tablet_list_width">300dp</dimen>
     <dimen name="phone_list_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

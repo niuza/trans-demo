@@ -15,7 +15,12 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+import android.provider.Settings;
+import android.content.ComponentName;
+import com.niuza.trans.utils.TransferCounter;
 import com.special.ResideMenu.*;
+import android.content.Intent;
+import android.os.Bundle;
 
 import com.niuza.trans.p2p.WiFiDirectBroadcastReceiver;
 import com.niuza.trans.ui.DeviceDetailFragment;
@@ -77,14 +82,102 @@ public class MainActivity extends AppCompatActivity implements WifiP2pManager.Ch
         resideMenu.attachToActivity(this);
 
         // create menu items;
-        String titles[] = { "主页", "用户", "历史", "设置" };
-        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings };
+        String titles[] = { "手机传输", "电脑传输", "历史记录" ,"网络设置","关于我们"};
+        int icon[] = { R.drawable.icon_home, R.drawable.icon_profile, R.drawable.icon_calendar, R.drawable.icon_settings, R.drawable.help_about};
 
         for (int i = 0; i < titles.length; i++){
             ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
            // item.setOnClickListener();
             resideMenu.addMenuItem(item,  ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-        }
+
+            if (i==0){
+                item.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view)
+                    {
+                       resideMenu.closeMenu();
+
+                    }
+
+
+                });
+            }
+
+
+            if (i==1){
+                item.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view)
+                    {
+                        Intent intent=new Intent(MainActivity.this,pctrans.class);
+                        startActivity(intent);
+//                        Toast.makeText(getApplicationContext(), "电脑传输",
+//                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                });
+            }
+            if (i==2){
+                item.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view)
+                    {
+                        Intent intent=new Intent(MainActivity.this,TransRecordView.class);
+                        startActivity(intent);
+
+                    }
+
+
+                });
+            }
+            if(i==3)
+            {
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+            }
+            if (i==4){
+                item.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view)
+                    {
+                        AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this);
+                        alertDialog.setTitle("关于我们");
+                        alertDialog.setMessage("Transwhere 版本0.14.2\n\nCopyright by 快船");
+                        alertDialog.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                            }
+                        });
+                        alertDialog.show();
+
+
+                    }
+
+
+                });
+            }
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
         resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
 

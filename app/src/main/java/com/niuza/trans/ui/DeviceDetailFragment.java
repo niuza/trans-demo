@@ -70,6 +70,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 config.groupOwnerIntent = 15;
                 if (progressDialog != null && progressDialog.isShowing()) {
                         progressDialog.dismiss();
+
                 }
                 progressDialog = ProgressDialog.show(getActivity(), "按返回键取消",
                         "连接到 :" + device.deviceAddress, true, true
