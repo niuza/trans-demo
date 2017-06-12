@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context=".MainActivity">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
         <fragment
-            class="com.niuza.trans.ui.DeviceListFragment"
             android:id="@+id/frag_list"
+            class="com.niuza.trans.ui.DeviceListFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/device_list">
@@ -25,19 +22,19 @@
         </fragment>
 
         <fragment
-            class="com.niuza.trans.ui.DeviceDetailFragment"
             android:id="@+id/frag_detail"
+            class="com.niuza.trans.ui.DeviceDetailFragment"
             android:layout_width="match_parent"
-            android:layout_gravity="bottom"
             android:layout_height="match_parent"
+            android:layout_gravity="bottom"
             tools:layout="@layout/device_detail">
             <!-- Preview: layout=@layout/device_detail -->
         </fragment>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -45,48 +42,43 @@
                 android:layout_weight="1"
                 android:background="#FFFFFF"
                 android:orientation="vertical">
-
-
-             </LinearLayout>
-
-
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:orientation="horizontal">
+
                 <Button
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="startWifi"
-                    android:layout_marginBottom="2dp"
-                    android:text="打开wifi"
+                    android:layout_weight="1"
                     android:background="@drawable/shape"
+                    android:onClick="startWifi"
+                    android:text="打开wifi"
                     android:textColor="#B1B1B1"
                     android:textSize="18sp" />
 
                 <Button
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape"
                     android:onClick="startScan"
                     android:text="启动扫描"
-                    android:background="@drawable/shape"
                     android:textColor="#B1B1B1"
                     android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
 
-
-
     </LinearLayout>
+
 </LinearLayout>

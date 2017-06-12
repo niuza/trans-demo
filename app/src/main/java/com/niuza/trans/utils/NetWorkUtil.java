@@ -1,21 +1,24 @@
 package com.niuza.trans.utils;
+
 import android.net.*;
 import android.net.wifi.*;
 import android.content.Context;
+
 import java.util.regex.*;
+
 /**
  * Created by niuza on 5.23 023.
  */
 
 public class NetWorkUtil {
     public static boolean checkEnable(Context paramContext) {
-    boolean i = false;
-    NetworkInfo localNetworkInfo = ((ConnectivityManager) paramContext
-            .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-    if ((localNetworkInfo != null) && (localNetworkInfo.isAvailable()))
-        return true;
-    return false;
-}
+        boolean i = false;
+        NetworkInfo localNetworkInfo = ((ConnectivityManager) paramContext
+                .getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        if ((localNetworkInfo != null) && (localNetworkInfo.isAvailable()))
+            return true;
+        return false;
+    }
 
     /**
      * 将ip的整数形式转换成ip形式
@@ -48,14 +51,10 @@ public class NetWorkUtil {
         } catch (Exception ex) {
             return " 获取IP出错!请保证是WIFI,或者请重新打开网络!\n" + ex.getMessage();
         }
-
     }
 
-
-    public static boolean isIP(String addr)
-    {
-        if(addr.length() < 7 || addr.length() > 15 || "".equals(addr))
-        {
+    public static boolean isIP(String addr) {
+        if (addr.length() < 7 || addr.length() > 15 || "".equals(addr)) {
             return false;
         }
         /**
@@ -66,20 +65,20 @@ public class NetWorkUtil {
         Matcher mat = pat.matcher(addr);
         boolean ipAddress = mat.find();
         //============对之前的ip判断的bug在进行判断
-        if (ipAddress==true){
+        if (ipAddress == true) {
             String ips[] = addr.split("\\.");
-            if(ips.length==4){
-                try{
-                    for(String ip : ips){
-                        if(Integer.parseInt(ip)<0||Integer.parseInt(ip)>255){
+            if (ips.length == 4) {
+                try {
+                    for (String ip : ips) {
+                        if (Integer.parseInt(ip) < 0 || Integer.parseInt(ip) > 255) {
                             return false;
                         }
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     return false;
                 }
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }

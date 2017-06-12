@@ -34,7 +34,6 @@ import com.niuza.trans.ui.DeviceDetailFragment;
 import com.niuza.trans.ui.DeviceListFragment;
 
 
-
 /**
  * 接收有关P2P网络状态的广播接收器
  * <p/>

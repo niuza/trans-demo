@@ -15,7 +15,6 @@ import com.niuza.trans.utils.TransferCounter;
 
 public class TransRecordView extends AppCompatActivity {
 
-
     private TextView countText;
     private TextView sizeText;
     private Button clearBtn;
@@ -25,19 +24,18 @@ public class TransRecordView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trans_record_view);
 
-        countText=(TextView) findViewById(R.id.count_text);
-        sizeText=(TextView)findViewById(R.id.size_text);
-        clearBtn=(Button) findViewById(R.id.clear_button);
+        countText = (TextView) findViewById(R.id.count_text);
+        sizeText = (TextView) findViewById(R.id.size_text);
+        clearBtn = (Button) findViewById(R.id.clear_button);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("历史记录");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        String cText="传输"+String.valueOf(TransferCounter.getCount(TransRecordView.this))+"次";
-        String sText="传输"+String.valueOf(TransferCounter.getSize(TransRecordView.this))+"kb";
+        String cText = "传输" + String.valueOf(TransferCounter.getCount(TransRecordView.this)) + "次";
+        String sText = "传输" + String.valueOf(TransferCounter.getSize(TransRecordView.this)) + "kb";
         countText.setText(cText);
-         sizeText.setText(sText);
+        sizeText.setText(sText);
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +44,7 @@ public class TransRecordView extends AppCompatActivity {
             }
         });
 
-      //  Toast.makeText(getApplicationContext(),"显示："+String.valueOf(TransferCounter.getCount(TransRecordView.this)),Toast.LENGTH_LONG).show();
+        //  Toast.makeText(getApplicationContext(),"显示："+String.valueOf(TransferCounter.getCount(TransRecordView.this)),Toast.LENGTH_LONG).show();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,13 +52,12 @@ public class TransRecordView extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
-    private void refresh(){
+
+    private void refresh() {
         finish();
-        Intent intent=new Intent();
-        intent.setClass(TransRecordView.this,TransRecordView.class);
+        Intent intent = new Intent();
+        intent.setClass(TransRecordView.this, TransRecordView.class);
         startActivity(intent);
     }
 

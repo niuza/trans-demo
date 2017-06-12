@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
->
+    android:layout_height="match_parent">
     <!-- Self information -->
     <RelativeLayout
         android:id="@+id/scroll_view_head"
@@ -141,8 +139,6 @@
             android:background="#FFFFFF" />
 
         <!-- Available peers -->
-
-
         <ListView
             android:id="@id/android:list"
             android:layout_width="match_parent"

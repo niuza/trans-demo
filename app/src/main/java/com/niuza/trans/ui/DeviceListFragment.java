@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Created by macmini3 on 16/3/1.
  */
-public class DeviceListFragment extends ListFragment implements WifiP2pManager.PeerListListener{
+public class DeviceListFragment extends ListFragment implements WifiP2pManager.PeerListListener {
 
     private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
     ProgressDialog progressDialog = null;
@@ -39,6 +39,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
 
     /**
      * 为当前的ListFragement设置适配器数据
+     *
      * @param savedInstanceState
      */
     @Override
@@ -47,9 +48,10 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
         this.setListAdapter(new WiFiPeerListAdapter(getActivity(), R.layout.row_device, peers));
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = View.inflate(getActivity(),R.layout.device_list,null);
+        mContentView = View.inflate(getActivity(), R.layout.device_list, null);
         return mContentView;
 
     }
@@ -70,8 +72,9 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
 
     /**
      * 实现PeerListListener 所要实现的方法
-     *
+     * <p>
      * 添加扫描到的设备，
+     *
      * @param peerList
      */
     @Override
@@ -130,7 +133,6 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
     }
 
 
-
     public void clearPeers() {
         peers.clear();
         ((WiFiPeerListAdapter) getListAdapter()).notifyDataSetChanged();
@@ -145,6 +147,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
         WifiP2pDevice device = (WifiP2pDevice) getListAdapter().getItem(position);
         ((DeviceActionListener) getActivity()).showDetails(device);
     }
+
     /**
      * Array adapter for ListFragment that maintains WifiP2pDevice list.
      */
@@ -191,6 +194,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
 
     /**
      * 获取当前设备的状态
+     *
      * @param deviceStatus
      * @return
      */

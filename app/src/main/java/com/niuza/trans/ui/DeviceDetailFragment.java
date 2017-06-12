@@ -69,7 +69,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 config.wps.setup = WpsInfo.PBC;
                 config.groupOwnerIntent = 15;
                 if (progressDialog != null && progressDialog.isShowing()) {
-                        progressDialog.dismiss();
+                    progressDialog.dismiss();
 
                 }
                 progressDialog = ProgressDialog.show(getActivity(), "按返回键取消",
@@ -109,7 +109,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                     public void onClick(View v) {
                         // Allow user to pick an image from Gallery or other
                         // registered apps
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                         intent.setType("*/*");
                         intent.addCategory(Intent.CATEGORY_OPENABLE);
                         startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
@@ -121,11 +121,12 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
     /**
      * 实现ConnectionInfoListener  所要实现的方法(发现设备的时候发现进度对话框无法消失因为该方法我没有写内容)----当成功发现同层设备的时候该方法被调用
-     *
-     *可以得到当前连接的信息(用户点击连接的时候，让连接按钮gone)
-     *
-     *
+     * <p>
+     * 可以得到当前连接的信息(用户点击连接的时候，让连接按钮gone)
+     * <p>
+     * <p>
      * 客户端发送文件
+     *
      * @param info
      */
     @Override
@@ -137,12 +138,11 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         this.getView().setVisibility(View.VISIBLE);
         mContentView.findViewById(R.id.btn_disconnect).setVisibility(View.VISIBLE);
 
-        // The owner IP is now known.
+        // The owner IP is now known. config.groupOwnerIntent = 15;
         TextView view = (TextView) mContentView.findViewById(R.id.group_owner);
         view.setText(getResources().getString(R.string.group_owner_text)
-                + ((info.isGroupOwner ) ? getResources().getString(R.string.yes)
+                + ((info.isGroupOwner) ? getResources().getString(R.string.yes)
                 : getResources().getString(R.string.no)));
-
 
 
         // InetAddress from WifiP2pInfo struct.
@@ -165,9 +165,6 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
             ((TextView) mContentView.findViewById(R.id.status_text)).setText(getResources()
                     .getString(R.string.client_text));
             //get message button.
-
-            ((TextView) mContentView.findViewById(R.id.status_text)).setText(getResources()
-                    .getString(R.string.client_text));
         }
 
         // hide the connect button
@@ -209,29 +206,26 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                 Log.d(MainActivity.TAG, "接入的客户端的IP是:" + remoteSocketAddress.toString());
 
 
-
                 InputStream inputstream = client.getInputStream();
-                DataInputStream dis=new DataInputStream(inputstream);
+                DataInputStream dis = new DataInputStream(inputstream);
 
 
-                String receivename="";
-                try
-                {
+                String receivename = "";
+                try {
 
-                    receivename=dis.readUTF();
-                    receivename= URLEncoder.encode(receivename, "GBK");
+                    receivename = dis.readUTF();
+                    //   receivename= URLEncoder.encode(receivename, "GBK");
                     dis.readLong();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                SimpleDateFormat formatter = new SimpleDateFormat ("yyyyMMdd");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
                 Date curDate = new Date(System.currentTimeMillis());//获取当前时间
                 String dateStr = formatter.format(curDate);
 
                 final File f = new File(Environment.getExternalStorageDirectory() + "/"
-                        + context.getPackageName() + "/"+dateStr+"_"+receivename);
+                        + context.getPackageName() + "/" + dateStr + "_" + receivename);
 
 
                 File dirs = new File(f.getParent());
@@ -263,11 +257,11 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                     intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory() + "/"
                             + context.getPackageName()), "*/*");
 
-                    final Intent file_intent=intent;
-                    AlertDialog.Builder alertDialog=new AlertDialog.Builder(context);
+                    final Intent file_intent = intent;
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                     alertDialog.setTitle("传输完成");
                     alertDialog.setMessage("确认打开文件？");
-                    alertDialog.setPositiveButton("取消",new DialogInterface.OnClickListener() {
+                    alertDialog.setPositiveButton("取消", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                         }
@@ -279,13 +273,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
                         }
                     });
                     alertDialog.show();
-
-
-
-
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -303,21 +291,16 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
     }
 
-
-
-
-
     public void showDetails(WifiP2pDevice device) {
         this.device = device;
         this.getView().setVisibility(View.VISIBLE);
         TextView view = (TextView) mContentView.findViewById(R.id.device_address);
-        view.setText("设备MAC地址："+device.deviceAddress);
+        view.setText("设备MAC地址：" + device.deviceAddress);
         view = (TextView) mContentView.findViewById(R.id.device_info);
         view.setText(device.toString());
         view = (TextView) mContentView.findViewById(R.id.device_detailname);
-        view.setText("设备名称："+device.deviceName);
+        view.setText("设备名称：" + device.deviceName);
     }
-
 
     /**
      * Clears the UI fields after a disconnect or direct mode disable operation.
@@ -340,6 +323,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
     /**
      * 复制文件 文件传输服务类要调用的方法
+     *
      * @param inputStream
      * @param out
      * @return
@@ -351,7 +335,6 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         try {
             while ((len = inputStream.read(buf)) != -1) {
                 out.write(buf, 0, len);
-
             }
             out.close();
             inputStream.close();
@@ -362,20 +345,18 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
         return true;
     }
 
-
-
     /**
      * 获取用户选择的图片，调起文件传输服务
+     *
      * @param requestCode
      * @param resultCode
      * @param data
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         // User has picked an image. Transfer it to group owner i.e peer using
         // FileTransferService.
-        try{
+        try {
             Uri uri = data.getData();
             TextView statusText = (TextView) mContentView.findViewById(R.id.status_text);
             statusText.setText("Sending: " + uri);
@@ -384,20 +365,13 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
             serviceIntent.setAction(FileTransferService.ACTION_SEND_FILE);
             serviceIntent.putExtra(FileTransferService.EXTRAS_FILE_PATH, uri.toString());
 
-
             //把g（group owner)的主机地址和端口号传递给GC(group client)端
             serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_ADDRESS,
                     info.groupOwnerAddress.getHostAddress());
             serviceIntent.putExtra(FileTransferService.EXTRAS_GROUP_OWNER_PORT, 8988);
             getActivity().startService(serviceIntent);
-        }
-       catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-       }
-
-
-
+        }
     }
-
-
 }

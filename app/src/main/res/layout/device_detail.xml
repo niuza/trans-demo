@@ -1,90 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:visibility="gone">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background1">
+        android:background="@drawable/background1"
+        android:orientation="vertical">
         <!--扫描到设备后的设备信息-->
         <TextView
             android:id="@+id/device_address"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#B1B1B1"/>
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#B1B1B1" />
+
         <TextView
             android:id="@+id/device_info"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#0000FF"/>
+            android:textColor="#0000FF"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/device_detailname"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#B1B1B1"/>
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#B1B1B1" />
+
         <TextView
             android:id="@+id/group_owner"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#0000FF"/>
+            android:textColor="#0000FF"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/group_ip"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:id="@+id/status_bar"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginBottom="3dp"
->
+        android:orientation="vertical">
+
         <Button
             android:id="@+id/btn_connect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
-            android:textColor="#B1B1B1"
-            android:text="我要接收" />
+            android:text="我要接收"
+            android:textColor="#B1B1B1" />
+
         <Button
             android:id="@+id/btn_start_client"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
-            android:textColor="#B1B1B1"
             android:text="发送文件"
+            android:textColor="#B1B1B1"
             android:visibility="gone" />
+
         <Button
             android:id="@+id/btn_disconnect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape"
-            android:textColor="#B1B1B1"
-            android:text="断开连接" />
+            android:text="断开连接"
+            android:textColor="#B1B1B1" />
 
 
         <TextView
+            android:id="@+id/status_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:textColor="@android:color/white"
-            android:id="@+id/status_text">
-        </TextView>
+            android:visibility="gone"></TextView>
     </LinearLayout>
 </FrameLayout>
